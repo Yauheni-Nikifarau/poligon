@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RedisController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/redis/set', [RedisController::class, 'set']);
+Route::post('/redis/rename', [RedisController::class, 'rename']);
+Route::post('/redis/delete', [RedisController::class, 'delete']);
+Route::post('/redis/incr', [RedisController::class, 'incr']);
+Route::post('/redis/decr', [RedisController::class, 'decr']);
+Route::post('/redis/incr-by', [RedisController::class, 'incrBy']);
+Route::post('/redis/decr-by', [RedisController::class, 'decrBy']);
+Route::post('/redis/expire', [RedisController::class, 'expire']);
