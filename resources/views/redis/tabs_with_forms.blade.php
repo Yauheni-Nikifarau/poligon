@@ -23,6 +23,12 @@
     <li class="nav-item">
         <button class="nav-link" form="expire">Expire</button>
     </li>
+    <li class="nav-item">
+        <button class="nav-link" form="push">Push</button>
+    </li>
+    <li class="nav-item">
+        <button class="nav-link" form="pop">Pop</button>
+    </li>
 </ul>
 @include('redis.forms.setForm')
 @include('redis.forms.renameForm')
@@ -32,3 +38,5 @@
 @include('redis.forms.incrementByForm')
 @include('redis.forms.decrementByForm')
 @include('redis.forms.expireForm')
+@include('redis.forms.pushForm')
+@include('redis.forms.popForm')

@@ -27,3 +27,5 @@ Route::post('/redis/decr', [RedisController::class, 'decr']);
 Route::post('/redis/incr-by', [RedisController::class, 'incrBy']);
 Route::post('/redis/decr-by', [RedisController::class, 'decrBy']);
 Route::post('/redis/expire', [RedisController::class, 'expire']);
+Route::post('/redis/push', [RedisController::class, 'push']);
+Route::post('/redis/pop', [RedisController::class, 'pop']);

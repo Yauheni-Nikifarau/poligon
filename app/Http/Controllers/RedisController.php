@@ -14,8 +14,15 @@ class RedisController extends Controller
         }, $keys);
 
         $redis_table = [];
+
         foreach ($keys as $key) {
-            $redis_table[$key] = Redis::get($key);
+            if (Redis::type($key)->getPayload() === 'list') {
+                $elements = Redis::lRange($key, 0, -1);
+                $redis_table[$key] = '[' . implode(', ', $elements) . ']';
+            } else {
+                $redis_table[$key] = Redis::get($key);
+            }
+
         }
 
         return view('redis', ['redis_table' => $redis_table]);
@@ -58,6 +65,16 @@ class RedisController extends Controller
 
     public function expire (Request $request) {
         Redis::expire($request->input('key'), $request->input('expire'));
+        return redirect('/redis');
+    }
+
+    public function push (Request $request) {
+        Redis::rpush($request->input('key'), $request->input('value'));
+        return redirect('/redis');
+    }
+
+    public function pop (Request $request) {
+        $element = Redis::lpop($request->input('key'));
         return redirect('/redis');
     }
 }
